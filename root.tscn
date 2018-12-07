@@ -1,0 +1,168 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://root.gd" type="Script" id=1]
+[ext_resource path="res://food.tscn" type="PackedScene" id=2]
+[ext_resource path="res://CollisionShape2D.gd" type="Script" id=3]
+[ext_resource path="res://tail.tscn" type="PackedScene" id=4]
+[ext_resource path="res://icon.png" type="Texture" id=5]
+[ext_resource path="res://rect10.png" type="Texture" id=6]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 20.0
+
+[sub_resource type="CircleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 10.0
+
+[sub_resource type="ShaderMaterial" id=3]
+
+render_priority = 1
+_sections_unfolded = [ "Resource" ]
+
+[node name="root" type="Node" index="0"]
+
+script = ExtResource( 1 )
+food = ExtResource( 2 )
+
+[node name="Head" type="Area2D" parent="." index="0"]
+
+position = Vector2( 509.096, 293.507 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 3 )
+tailScene = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head" index="0"]
+
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite" type="Sprite" parent="Head" index="1"]
+
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 5 )
+_sections_unfolded = [ "Region", "Transform" ]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." index="1"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+mode = 3
+mass = 1.0
+friction = 1.0
+bounce = 0.0
+gravity_scale = 1.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" index="0"]
+
+shape = SubResource( 2 )
+
+[node name="Arena" type="Node" parent="." index="2"]
+
+editor/display_folded = true
+
+[node name="Left" type="Node2D" parent="Arena" index="0"]
+
+editor/display_folded = true
+modulate = Color( 0.484375, 0.160828, 0.160828, 1 )
+self_modulate = Color( 0.175781, 0.0631714, 0.0631714, 1 )
+material = SubResource( 3 )
+position = Vector2( 149, 300 )
+scale = Vector2( 0.5, 0.5 )
+_sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Arena/Left" index="0"]
+
+position = Vector2( -20, 0 )
+scale = Vector2( 1, 22 )
+texture = ExtResource( 6 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Top" type="Node2D" parent="Arena" index="1"]
+
+editor/display_folded = true
+modulate = Color( 0.484375, 0.160828, 0.160828, 1 )
+self_modulate = Color( 0.175781, 0.0631714, 0.0631714, 1 )
+material = SubResource( 3 )
+position = Vector2( 500, 100 )
+rotation = 1.5708
+scale = Vector2( 0.5, 0.5 )
+_sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Arena/Top" index="0"]
+
+position = Vector2( -20, 0 )
+scale = Vector2( 1, 39 )
+texture = ExtResource( 6 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Right" type="Node2D" parent="Arena" index="2"]
+
+editor/display_folded = true
+modulate = Color( 0.484375, 0.160828, 0.160828, 1 )
+self_modulate = Color( 0.175781, 0.0631714, 0.0631714, 1 )
+material = SubResource( 3 )
+position = Vector2( 851, 300 )
+rotation = 3.14159
+scale = Vector2( 0.5, 0.5 )
+_sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Arena/Right" index="0"]
+
+position = Vector2( -20, 0 )
+scale = Vector2( 1, 22 )
+texture = ExtResource( 6 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Bottom" type="Node2D" parent="Arena" index="3"]
+
+editor/display_folded = true
+modulate = Color( 0.484375, 0.160828, 0.160828, 1 )
+self_modulate = Color( 0.175781, 0.0631714, 0.0631714, 1 )
+material = SubResource( 3 )
+position = Vector2( 500, 500 )
+rotation = -1.5708
+scale = Vector2( 0.5, 0.5 )
+_sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Arena/Bottom" index="0"]
+
+position = Vector2( -20, 0 )
+scale = Vector2( 1, 39 )
+texture = ExtResource( 6 )
+_sections_unfolded = [ "Transform" ]
+
+[connection signal="area_entered" from="Head" to="Head" method="_on_Area2D_area_entered"]
+
+
