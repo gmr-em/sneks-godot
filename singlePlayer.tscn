@@ -1,0 +1,257 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://root.gd" type="Script" id=1]
+[ext_resource path="res://food.tscn" type="PackedScene" id=2]
+[ext_resource path="res://CollisionShape2D.gd" type="Script" id=3]
+[ext_resource path="res://tail.tscn" type="PackedScene" id=4]
+[ext_resource path="res://icon.png" type="Texture" id=5]
+[ext_resource path="res://rect10.png" type="Texture" id=6]
+[ext_resource path="res://gameOverPopup.tscn" type="PackedScene" id=7]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 20.0
+
+[sub_resource type="ShaderMaterial" id=2]
+
+render_priority = 1
+_sections_unfolded = [ "Resource" ]
+
+[node name="root" type="Node" index="0"]
+
+script = ExtResource( 1 )
+food = ExtResource( 2 )
+
+[node name="Head" type="Area2D" parent="." index="0"]
+
+editor/display_folded = true
+position = Vector2( 509.096, 293.507 )
+z_index = 1
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 3 )
+tailScene = ExtResource( 4 )
+player = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head" index="0"]
+
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite" type="Sprite" parent="Head" index="1"]
+
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 5 )
+_sections_unfolded = [ "Region", "Transform" ]
+
+[node name="Arena" type="Node" parent="." index="1"]
+
+editor/display_folded = true
+
+[node name="Left" type="Node2D" parent="Arena" index="0"]
+
+editor/display_folded = true
+modulate = Color( 0.484375, 0.160828, 0.160828, 1 )
+self_modulate = Color( 0.175781, 0.0631714, 0.0631714, 1 )
+material = SubResource( 2 )
+position = Vector2( 149, 300 )
+scale = Vector2( 0.5, 0.5 )
+_sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Arena/Left" index="0"]
+
+position = Vector2( -20, 0 )
+scale = Vector2( 1, 22 )
+texture = ExtResource( 6 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Top" type="Node2D" parent="Arena" index="1"]
+
+editor/display_folded = true
+modulate = Color( 0.484375, 0.160828, 0.160828, 1 )
+self_modulate = Color( 0.175781, 0.0631714, 0.0631714, 1 )
+material = SubResource( 2 )
+position = Vector2( 500, 100 )
+rotation = 1.5708
+scale = Vector2( 0.5, 0.5 )
+_sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Arena/Top" index="0"]
+
+position = Vector2( -20, 0 )
+scale = Vector2( 1, 39 )
+texture = ExtResource( 6 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Right" type="Node2D" parent="Arena" index="2"]
+
+editor/display_folded = true
+modulate = Color( 0.484375, 0.160828, 0.160828, 1 )
+self_modulate = Color( 0.175781, 0.0631714, 0.0631714, 1 )
+material = SubResource( 2 )
+position = Vector2( 851, 300 )
+rotation = 3.14159
+scale = Vector2( 0.5, 0.5 )
+_sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Arena/Right" index="0"]
+
+position = Vector2( -20, 0 )
+scale = Vector2( 1, 22 )
+texture = ExtResource( 6 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Bottom" type="Node2D" parent="Arena" index="3"]
+
+editor/display_folded = true
+modulate = Color( 0.484375, 0.160828, 0.160828, 1 )
+self_modulate = Color( 0.175781, 0.0631714, 0.0631714, 1 )
+material = SubResource( 2 )
+position = Vector2( 500, 500 )
+rotation = -1.5708
+scale = Vector2( 0.5, 0.5 )
+_sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Arena/Bottom" index="0"]
+
+position = Vector2( -20, 0 )
+scale = Vector2( 1, 39 )
+texture = ExtResource( 6 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="UI0" type="Node" parent="." index="2"]
+
+editor/display_folded = true
+
+[node name="MoveRight" type="Button" parent="UI0" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 219.0
+margin_top = 36.0
+margin_right = 288.0
+margin_bottom = 65.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Right"
+flat = false
+align = 1
+
+[node name="MoveLeft" type="Button" parent="UI0" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 133.0
+margin_top = 37.0
+margin_right = 202.0
+margin_bottom = 66.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Left"
+flat = false
+align = 1
+
+[node name="Score" type="Label" parent="UI0" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 304.0
+margin_top = 44.0
+margin_right = 375.0
+margin_bottom = 62.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Score: 0"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="gameOverPopup" parent="." index="3" instance=ExtResource( 7 )]
+
+visible = false
+
+[node name="Button" type="Button" parent="." index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 622.0
+margin_top = 34.0
+margin_right = 703.0
+margin_bottom = 65.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Pause"
+flat = false
+align = 1
+
+[connection signal="area_entered" from="Head" to="Head" method="_on_Area2D_area_entered"]
+
+[connection signal="button_down" from="UI0/MoveRight" to="Head" method="_on_MoveRight_button_down"]
+
+[connection signal="button_up" from="UI0/MoveRight" to="Head" method="_on_MoveRight_button_up"]
+
+[connection signal="button_down" from="UI0/MoveLeft" to="Head" method="_on_MoveLeft_button_down"]
+
+[connection signal="button_up" from="UI0/MoveLeft" to="Head" method="_on_MoveLeft_button_up"]
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+
+
